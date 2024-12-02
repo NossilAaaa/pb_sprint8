@@ -2,6 +2,7 @@
 
 [LOGO_COMPASS.pdf](Mapa_Mental\LOGO_COMPASS.png)
 
+
 # 🎟️ API de **API de Cinema PBs**
 
 Bem-vindo ao repositório da **Challenge Final(Sprint 8) - Scholarship**!
