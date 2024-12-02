@@ -23,7 +23,7 @@ O projeto visa atender dois principais objetivos:
 ## 🛠️ **Ferramentas e Tecnologias Utilizadas**
 
 - **Node.js**: Ambiente de execução JavaScript.
-- Playwright: Framework para automação de testes de ponta a ponta, com suporte para múltiplos navegadores e testes em UI.
+- **Playwright**: Framework para automação de testes de ponta a ponta, com suporte para múltiplos navegadores e testes em UI.
 - **Mocha & Chai**: Frameworks de testes para garantir a qualidade do código.
 - **Swagger**: Documentação da API.
 
@@ -44,6 +44,11 @@ Use o comando abaixo para clonar o projeto para o seu computador:
 
 ```bash
 git clone <https://github.com/juniorschmitz/nestjs-cinema.git>
+
+```
+Após clonar o repositório, instale as dependências:
+```bash
+npm i
 
 ```
 
