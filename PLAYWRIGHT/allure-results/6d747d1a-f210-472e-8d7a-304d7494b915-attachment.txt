@@ -1,0 +1,73 @@
+Tickets disponíveis: [
+  {
+    movieId: 'AQUI NÃO PODE SER STRING',
+    seatNumber: 10,
+    price: 10,
+    showtime: 'VALIDAÇÃO DE DATAS',
+    _id: '4IPa99ed6K8eVyFO'
+  },
+  {
+    movieId: 'AQUI NÃO PODE SER STRING',
+    seatNumber: 10,
+    price: 10,
+    showtime: 'VALIDAÇÃO DE DATAS',
+    _id: '4sS1aDKXyXV53JMi'
+  },
+  {
+    movieId: ' ',
+    seatNumber: 10,
+    price: 10,
+    showtime: 'VALIDAÇÃO DE DATAS',
+    _id: 'BsqFEOjEgeynRSHU'
+  },
+  {
+    movieId: 'AQUI NÃO PODE SER STRING',
+    seatNumber: 10,
+    price: 10,
+    showtime: 'VALIDAÇÃO DE DATAS',
+    _id: 'EMcChogeFERkiSsd'
+  },
+  {
+    movieId: 'AQUI NÃO PODE SER STRING',
+    seatNumber: 10,
+    price: 10,
+    showtime: 'VALIDAÇÃO DE DATAS',
+    _id: 'VyKFIBhq8pYj5NFx'
+  },
+  {
+    movieId: 'c9d88b98-fe87-4fa4-b46a-6aedef1d38b5',
+    seatNumber: 99,
+    price: 34.34,
+    showtime: '2024-12-02T21:00:00.000Z',
+    _id: 'cMMahKDYVGjvTR13'
+  },
+  {
+    movieId: 'AQUI NÃO PODE SER STRING',
+    seatNumber: 10,
+    price: 10,
+    showtime: 'VALIDAÇÃO DE DATAS',
+    _id: 'ploStaaNfmmqNX2G'
+  },
+  {
+    movieId: 'Peppa Pig',
+    seatNumber: 20,
+    price: 10,
+    showtime: '2024-12-05T17:25:58.469Z',
+    _id: 'qM4N10BYuYBsJ1lL'
+  },
+  {
+    movieId: '7ecc83e5-ee8e-4255-b4dc-d26df6cbe44d',
+    seatNumber: 50,
+    price: 37.4,
+    showtime: '2024-12-02T20:00:00.000Z',
+    _id: 'yqZC4HRcZZm8wN4p'
+  }
+]
+Ticket selecionado para remoção: {
+  movieId: 'AQUI NÃO PODE SER STRING',
+  seatNumber: 10,
+  price: 10,
+  showtime: 'VALIDAÇÃO DE DATAS',
+  _id: '4sS1aDKXyXV53JMi'
+}
+Ticket removido com sucesso: 4sS1aDKXyXV53JMi

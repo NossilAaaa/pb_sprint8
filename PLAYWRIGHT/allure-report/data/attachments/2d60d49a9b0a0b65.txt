@@ -1,0 +1,2 @@
+Status da requisição: 201
+Resposta: {"movieId":"AQUI NÃO PODE SER STRING","seatNumber":10,"price":10,"showtime":"VALIDAÇÃO DE DATAS","_id":"fwW5vLafOFkEA67i"}

@@ -1,0 +1,15 @@
+Ticket criado: {
+  movieId: '12345',
+  seatNumber: 31,
+  price: 35,
+  showtime: '2024-12-02T21:05:27.030Z',
+  _id: 'wfXWWRtCrieVs9da'
+}
+Ticket atualizado: {
+  movieId: 'deletada',
+  seatNumber: 31,
+  price: 35,
+  showtime: '2024-12-02T21:05:27.030Z',
+  _id: 'wfXWWRtCrieVs9da'
+}
+Ticket deletado com sucesso.
