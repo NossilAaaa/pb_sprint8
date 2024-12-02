@@ -1,6 +1,6 @@
 # ReadMe.md
 
-[LOGO_COMPASS.pdf](C:\Users\aliss\OneDrive\Área de Trabalho\pb_sprint8\Mapa_Mental\LOGO_COMPASS.pdf)
+[LOGO_COMPASS.pdf](Mapa_Mental\LOGO_COMPASS.png)
 
 # 🎟️ API de **API de Cinema PBs**
 
