@@ -1,6 +1,6 @@
 # ReadMe.md
 
-[LOGO_COMPASS.png](Mapa_Mental\LOGO_COMPASS.png)
+[LOGO_COMPASS.png](Mapa_Mental/LOGO_COMPASS.png)
 
 
 # 🎟️ API de **API de Cinema PBs**
