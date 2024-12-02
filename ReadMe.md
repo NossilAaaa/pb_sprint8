@@ -47,8 +47,8 @@ git clone <https://github.com/juniorschmitz/nestjs-cinema.git>
 
 ```
 
-```markdown
 ## Sobre Mim
+```markdown
 Olá! Eu sou o Alisson, estudante de Ciência da Computação, atualmente focado na área de Quality AI. Neste repositório, compartilho um pouco do que estou aprendendo e desenvolvendo durante a Sprint 1 do projeto PB QualityAI.
 
     Experiências em:
