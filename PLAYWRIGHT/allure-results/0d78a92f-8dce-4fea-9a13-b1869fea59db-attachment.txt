@@ -1,6 +1,0 @@
-Status da requisição com ID inexistente: 404
-Resposta da API: {
-  message: 'Ticket with ID idInvalido123456 not found.',
-  error: 'Not Found',
-  statusCode: 404
-}
