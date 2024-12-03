@@ -52,6 +52,12 @@ Após clonar o repositório, instale as dependências:
 npm i
 
 ```
+
+Após instalar as dependencias, na pasta nestjs-cinema-main execute o comando:
+```bash
+npm start
+
+```
 ---
 ## Agradecimentos
 
