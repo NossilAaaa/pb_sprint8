@@ -15,8 +15,8 @@ Essa API foi desenvolvida para gerenciar informações de filmes e permitir a re
 
 O projeto visa atender dois principais objetivos:
 
-1. Gerenciamento de filmes, permitindo que administradores cadastrem, atualizem, listem e excluam filmes.
-2. Reserva de ingressos, onde usuários podem selecionar assentos, preços e horários de exibição.
+1. Gerenciamento de filmes, verificando se a rota /movies cadastra, atualiza, lista e exclui filmes.
+2. Reserva de ingressos, verificando se a rota /tickets pode selecionar assentos, preços e horários de exibição.
 
 ---
 
@@ -24,7 +24,8 @@ O projeto visa atender dois principais objetivos:
 
 - **Node.js**: Ambiente de execução JavaScript.
 - **Playwright**: Framework para automação de testes de ponta a ponta, com suporte para múltiplos navegadores e testes em UI.
-- **Mocha & Chai**: Frameworks de testes para garantir a qualidade do código.
+- **JMeter**: Ferramenta de teste de carga para medir o desempenho e a capacidade de escalabilidade de aplicativos e serviços.
+- **K6**: Plataforma de teste de desempenho para APIs e sistemas distribuídos, focada em facilitar testes de carga e performance em ambientes de produção.
 - **Swagger**: Documentação da API.
 
 ---
