@@ -1,134 +1,81 @@
-# 🎟️ Teste de Carga para API de Cinema com JMeter
+# ReadMe.md
 
-Este guia fornece as instruções para configurar e executar um teste de carga simples na API de Cinema utilizando o **Apache JMeter**.
 
----
+# 🎟️ API de **API de Cinema PBs**
 
-## 📋 **Objetivo do Teste**
+Bem-vindo ao repositório da **Challenge Final(Sprint 8) - Scholarship**!
 
-O objetivo do teste é verificar a capacidade da API de gerenciar múltiplas requisições simultâneas para a rota `/movies`, garantindo a estabilidade e o desempenho do sistema.
-
----
-
-## 🛠️ **Ferramentas Utilizadas**
-
-- **JMeter**: Ferramenta para simulação de carga e desempenho.
-- **CSV Data Set Config**: Para alimentar o teste com dados dinâmicos de filmes.
-- **API de Cinema**: Serviço backend para gerenciamento de filmes.
+Essa API foi desenvolvida para gerenciar informações de filmes e permitir a reserva de ingressos de forma prática e eficiente.  
 
 ---
 
-## 📂 **Estrutura de Arquivos**
+## 📋 **Objetivo**
 
-Certifique-se de organizar os arquivos da seguinte forma:
+O projeto visa atender dois principais objetivos:
+
+1. Gerenciamento de filmes, verificando se a rota /movies cadastra, atualiza, lista e exclui filmes.
+2. Reserva de ingressos, verificando se a rota /tickets pode selecionar assentos, preços e horários de exibição.
+
+---
+
+## 🛠️ **Ferramentas e Tecnologias Utilizadas**
+
+- **Node.js**: Ambiente de execução JavaScript.
+- **Playwright**: Framework para automação de testes de ponta a ponta, com suporte para múltiplos navegadores e testes em UI.
+- **JMeter**: Ferramenta de teste de carga para medir o desempenho e a capacidade de escalabilidade de aplicativos e serviços.
+- **K6**: Plataforma de teste de desempenho para APIs e sistemas distribuídos, focada em facilitar testes de carga e performance em ambientes de produção.
+- **Swagger**: Documentação da API.
+
+---
+
+## 🚀 **Instalação**
+
+### **Pré-requisitos**
+
+Certifique-se de que você possui as seguintes ferramentas instaladas:
+
+- [Node.js (v21+)](https://nodejs.org/) (https://nodejs.org/)
+- [K6] - winget install k6 --source winget
+
+### **Clonando o Repositório**
+
+Após clonar o repositório, instale as dependências:
+```bash
+npm i
 
 ```
-plaintext
-Copiar código
-JMeter_Test/
-│
-├── apache-jmeter-5.6.3/            # Pasta do JMeter (extraída do .zip)
-│   └── bin/
-│
-├── cinema.csv                      # Arquivo CSV com os dados dos filmes
-└── TestPlan.jmx                    # Plano de teste do JMeter
+Com a API de Cinemas sendo executada, pasta do K6, execute o comando(no "teste_exec.js", é o nome do teste que voce deseja executar):
+```bash
+k6 run ./'teste_exec.js'
 
 ```
-
-### **Exemplo do `cinema.csv`**
-
-```
-csv
-Copiar código
-title,description,launchdate,showtimes
-Movie Title 1,Description for movie 1.,2024-12-01T10:00:00Z,[10:00 AM]
-Movie Title 2,Description for movie 2.,2024-12-02T14:00:00Z,[02:00 PM]
-Movie Title 3,Description for movie 3.,2024-12-03T20:00:00Z,[08:00 PM]
-...
+Para gerar os reportes, digite o seguinte comando(exatamente igual):
+```bash
+node ../reports/movies/traduzir.js
 
 ```
+---
+## Agradecimentos
+
+Gostaria de expressar minha gratidão a todos os colegas de turma que, ao longo dessas 8 sprints, contribuíram com dedicação, ideias e apoio mútuo para o sucesso deste projeto. Também agradeço ao nosso Scrum Master, Celso, pelo suporte, liderança e orientação, sempre conduzindo nossas reuniões e desafios com maestria. Este projeto final é fruto do esforço coletivo, e cada contribuição foi essencial para chegarmos até aqui. Obrigado por tornarem essa jornada ainda mais enriquecedora! 
 
 ---
 
-## 🚀 **Passo a Passo para Configuração e Execução**
 
-### **1. Configurar o JMeter**
+## Sobre Mim
+```markdown
+Olá! Eu sou o Alisson, estudante de Ciência da Computação, atualmente focado na área de Quality AI. Neste repositório, compartilho um pouco do que estou aprendendo e desenvolvendo durante a Sprint 1 do projeto PB QualityAI.
 
-1. **Download do JMeter**
-    
-    Baixe o Apache JMeter do site oficial: https://jmeter.apache.org/.
-    
-    Extraia o conteúdo do `.zip` em uma pasta de sua preferência.
-    
-2. **Iniciar o JMeter**
-    
-    Navegue até a pasta `apache-jmeter-5.6.3/bin` e execute o arquivo `jmeter.bat` no Windows (ou `jmeter` no Linux/Mac).
-    
+    Experiências em:
+    * C++;
+    * JAVA;
+    * Python;
+    * React.JS;
+    * Node.JS;
+    * Javascript;
+    * TypeScript;
+    * SQL;
+    * Git;  
+```
 
-### **2. Criar o Plano de Teste**
-
-1. **Adicionar um Thread Group**
-    - Clique com o botão direito no *Test Plan* > Add > Threads (Users) > Thread Group.
-    - Configure:
-        - `Number of Threads (users)`: **30**
-        - `Ramp-Up Period (seconds)`: **5**
-        - `Loop Count`: **2**
-2. **Adicionar uma Requisição HTTP**
-    - Clique com o botão direito no *Thread Group* > Add > Sampler > HTTP Request.
-    - Configure:
-        - `Protocol`: **http**
-        - `Server Name or IP`: **localhost**
-        - `Port Number`: **3000**
-        - `HTTP Method`: **POST**
-        - `Path`: **/movies**
-    - No campo *Body Data*, insira:
-        
-        ```json
-        json
-        Copiar código
-        {
-            "title": "${title}",
-            "description": "${description}",
-            "launchdate": "${launchdate}",
-            "showtimes": [${showtimes}]
-        }
-        
-        ```
-        
-3. **Adicionar o CSV Data Set Config**
-    - Clique com o botão direito no *Thread Group* > Add > Config Element > CSV Data Set Config.
-    - Configure:
-        - `Filename`: Caminho completo do arquivo `cinema.csv`.
-        - `Variable Names`: **title,description,launchdate,showtimes**
-        - `Recycle on EOF`: **True**
-        - `Stop thread on EOF`: **False**
-4. **Adicionar o HTTP Header Manager**
-    - Clique com o botão direito no *Thread Group* > Add > Config Element > HTTP Header Manager.
-    - Adicione os seguintes cabeçalhos:
-        - **Content-Type**: `application/json`
-5. **Adicionar um Listener para os Resultados**
-    - Clique com o botão direito no *Thread Group* > Add > Listener > View Results in Table.
-
----
-
-## ▶️ **Executar o Teste**
-
-1. Clique no botão de *Play* (▶️) no menu superior do JMeter.
-2. Monitore os resultados no Listener **View Results in Table**.
-
----
-
-## 📝 **Notas**
-
-- **Análise de Resultados**: Use listeners como **Aggregate Report** ou **Summary Report** para obter estatísticas detalhadas de desempenho.
-- **Ajustes Futuros**: Altere os valores de *Thread Group* (ex.: mais threads ou loops) para simular cenários mais complexos.
-
----
-
-Se tiver dúvidas ou precisar de ajustes no plano de teste, entre em contato! 🚀
-
----
-
-### 🖇️Anexos
-
-[Leitura em lingua inglesa.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/95dca7a3-3989-42d9-9dee-76cf7b8b5d8d/b3f3032a-5a55-48bb-a1fe-b4c24dfa7769/Leitura_em_lingua_inglesa.pdf)
+.
