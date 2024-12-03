@@ -119,3 +119,15 @@ function generateRandomTicket() {
 }
 
 module.exports = { generateRandomTicket };
+
+---
+
+## Refatorando as US:
+Prompt: Faça um refatoração desse planejamento de testes, pois não existe nenhum rota destinado a usuarios ou administrador: <'US'>;
+
+Resposta: Ele retornou a US e com um resumo das alterações: Ajustes Realizados
+Remoção de contexto administrativo: Planejamento refatorado para focar em filmes, eliminando restrições sobre papéis de usuários ou administradores.
+Aprimoramento de cenários de teste: Inclusão de cenários específicos de validação para garantir maior cobertura de exceções.
+Organização para CRUD exclusivo de filmes: Adaptado para alinhar com endpoints genéricos de gerenciamento.
+
+https://chatgpt.com/share/674f1727-a794-800a-a503-a3459dc3a48c

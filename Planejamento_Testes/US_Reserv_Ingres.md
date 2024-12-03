@@ -13,61 +13,59 @@ Para garantir meu lugar na exibição do filme desejado.
 ### **Definition of Ready (DoR):**
 
 1. Banco de dados e infraestrutura configurados para suportar reservas de ingressos.
-2. Endpoint da API documentado e acessível para testes.
+2. Endpoint **POST /tickets** documentado e disponível para consumo.
 3. Campos obrigatórios e estrutura do ingresso definidos:
-    - **movieId** (string, obrigatório)
-    - **userId** (string, obrigatório)
-    - **seatNumber** (inteiro, obrigatório, entre 0 e 99)
-    - **price** (decimal, obrigatório, entre 0 e 60)
-    - **showtime** (datetime, obrigatório, no formato **YYYY-MM-DDTHH:mm:ss.sssZ**)
-4. Ambiente de testes disponibilizado.
-5. Sistema de autenticação configurado para garantir que o `userId` seja válido.
-6. Regras de negócios e de validação bem definidas, incluindo verificações de intervalo de preço e número de assento.
+    - **movieId** (string, obrigatório, referência válida a um filme no banco de dados).
+    - **seatNumber** (inteiro, obrigatório, entre 0 e 99, único por `movieId` e `showtime`).
+    - **price** (decimal, obrigatório, valor entre 0 e 60).
+    - **showtime** (datetime, obrigatório, no formato **YYYY-MM-DDTHH:mm:ss.sssZ**, deve ser futuro).
+4. Ambiente de testes preparado com exemplos de filmes e horários disponíveis.
+5. Regras de validação e respostas de erro configuradas para:
+    - Conflito de assentos.
+    - Campos ausentes ou inválidos.
+    - Horários passados.
+6. Ferramentas de teste manual e automatizado configuradas.
 
 ---
 
 ### **Definition of Done (DoD):**
 
-1. Endpoint **POST /tickets** implementado para criar reservas de ingressos.
-2. Validações de entrada para campos obrigatórios, intervalos e unicidade do assento no horário implementadas.
-3. Testes manuais realizados para validar cenários principais e alternativos.
-4. Testes automatizados cobrindo verbos HTTP e cenários críticos executados, com evidências documentadas.
-5. Logs gerados para operações de criação de ingressos.
-6. Automação de testes integrada ao pipeline de CI/CD, incluindo cenários de carga para verificar requisitos não funcionais.
-7. Matriz de rastreabilidade atualizada com base nos testes executados.
-8. Performance validada contra requisitos não funcionais.
+1. Endpoint **POST /tickets** funcional e validado.
+2. Validações implementadas para garantir integridade dos dados:
+    - Checagem de `movieId`, `seatNumber`, `price`, e `showtime`.
+    - Unicidade do assento por filme e horário.
+3. Testes manuais executados e cenários principais documentados.
+4. Testes automatizados cobrindo cenários críticos, como:
+    - Reserva de assento válido.
+    - Tentativas de reserva para assento ocupado.
+    - Dados inválidos ou ausentes.
+5. Logs gerados para monitoramento das operações.
+6. Cobertura de testes automatizados integrada ao pipeline de CI/CD.
+7. Documentação atualizada no Swagger para refletir mudanças e critérios de validação.
 
 ---
 
 ### **Critérios de Aceitação (Acceptance Criteria):**
 
-1. **Campos obrigatórios para reservas de ingressos:**
-    - **movieId**: obrigatório, deve referenciar um filme existente no sistema.
-    - **userId**: obrigatório, deve referenciar um usuário válido.
-    - **seatNumber**: obrigatório, deve ser um número inteiro entre 0 e 99.
-    - **price**: obrigatório, deve ser um valor decimal entre 0 e 60.
-    - **showtime**: obrigatório, deve ser uma data/hora futura, no formato **YYYY-MM-DDTHH:mm:ss.sssZ**.
+1. **Campos obrigatórios para reservas:**
+    - **movieId**: obrigatório, deve referenciar um filme existente.
+    - **seatNumber**: obrigatório, inteiro entre 0 e 99, único por filme e horário.
+    - **price**: obrigatório, decimal entre 0 e 60.
+    - **showtime**: obrigatório, datetime futuro no formato **YYYY-MM-DDTHH:mm:ss.sssZ**.
 2. **Validações e Restrições:**
-    - Não deverá ser possível reservar um ingresso com `seatNumber` fora do intervalo de 0 a 99.
-    - Não deverá ser possível reservar um ingresso com `price` fora do intervalo de 0 a 60.
-    - Não deverá ser possível reservar um ingresso com um `showtime` no passado.
-    - Não deverá ser possível reservar um ingresso para um `seatNumber` já reservado no mesmo `showtime`.
-    - O sistema deve gerar um ID único para cada reserva de ingresso.
-    - A API deve retornar respostas apropriadas:
-        - Status **201 Created** para reservas bem-sucedidas.
-        - Status **400 Bad Request** para validações que falharam.
-        - Status **409 Conflict** para tentativa de reservar um assento já ocupado.
-3. **Testes:**
-    - Testes devem cobrir cenários básicos e alternativos:
-        - Reservas válidas com diferentes combinações de campos.
-        - Validação de dados incorretos, como assento fora do intervalo ou preço inválido.
-        - Tentativas de reservar assentos já ocupados no mesmo horário.
-    - Testes devem incluir evidências e logs de execução.
-    - Cobertura baseada no Swagger e expandida para cenários críticos.
+    - `seatNumber` deve ser único para um `movieId` e `showtime`.
+    - `price` deve ser um número decimal entre 0 e 60.
+    - `showtime` deve ser uma data futura.
+    - Campos obrigatórios ausentes ou inválidos devem retornar **400 Bad Request**.
+    - Assentos já reservados devem retornar **409 Conflict**.
+3. **Respostas esperadas:**
+    - **201 Created**: reserva bem-sucedida.
+    - **400 Bad Request**: erros de validação.
+    - **409 Conflict**: assento já ocupado.
 
 ---
 
-### **Exemplo de Teste Automatizado**
+### **Cenários de Teste**
 
 ### **Cenário: Reservar Ingresso com Sucesso**
 
@@ -75,20 +73,21 @@ Para garantir meu lugar na exibição do filme desejado.
 gherkin
 Copiar código
 Scenario: Reservar um ingresso com sucesso
-  Given que o usuário está autenticado e deseja reservar um ingresso
+  Given um filme com ID válido "642a4b82e4b0205ff99a7b6d" está disponível
+  And o assento 45 está disponível para o horário "2024-11-30T19:00:00.000Z"
   When enviar uma solicitação POST para /tickets com os seguintes dados:
     | campo       | valor                        |
     | movieId     | 642a4b82e4b0205ff99a7b6d     |
-    | userId      | 123456789                    |
     | seatNumber  | 45                           |
     | price       | 30.50                        |
     | showtime    | 2024-11-30T19:00:00.000Z     |
-  Then o sistema valida os campos obrigatórios
-  And verifica se o `seatNumber` 45 está disponível para o horário 2024-11-30T19:00:00.000Z
-  And cria a reserva com um ID único
+  Then o sistema valida os dados fornecidos
+  And cria uma reserva com um ID único
   And retorna status 201 Created com os detalhes da reserva
 
 ```
+
+---
 
 ### **Cenário: Tentativa de Reservar um Assento Já Ocupado**
 
@@ -96,19 +95,18 @@ Scenario: Reservar um ingresso com sucesso
 gherkin
 Copiar código
 Scenario: Tentar reservar um assento já ocupado
-  Given que o usuário está autenticado e deseja reservar um ingresso
-  And o assento 45 já foi reservado para o horário 2024-11-30T19:00:00.000Z
+  Given um filme com ID válido "642a4b82e4b0205ff99a7b6d" está disponível
+  And o assento 45 já está reservado para o horário "2024-11-30T19:00:00.000Z"
   When enviar uma solicitação POST para /tickets com os seguintes dados:
     | campo       | valor                        |
     | movieId     | 642a4b82e4b0205ff99a7b6d     |
-    | userId      | 987654321                    |
     | seatNumber  | 45                           |
     | price       | 30.50                        |
     | showtime    | 2024-11-30T19:00:00.000Z     |
-  Then o sistema valida os campos obrigatórios
-  And verifica que o `seatNumber` 45 já está ocupado para o horário 2024-11-30T19:00:00.000Z
-  And retorna status 409 Conflict com uma mensagem de erro apropriada
+  Then o sistema valida os dados fornecidos
+  And verifica que o assento 45 já está reservado para o horário
+  And retorna status 409 Conflict com mensagem "Assento já ocupado"
 
 ```
 
----
+.

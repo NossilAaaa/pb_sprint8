@@ -52,6 +52,13 @@ Após clonar o repositório, instale as dependências:
 npm i
 
 ```
+---
+## Agradecimentos
+
+Gostaria de expressar minha gratidão a todos os colegas de turma que, ao longo dessas 8 sprints, contribuíram com dedicação, ideias e apoio mútuo para o sucesso deste projeto. Também agradeço ao nosso Scrum Master, Celso, pelo suporte, liderança e orientação, sempre conduzindo nossas reuniões e desafios com maestria. Este projeto final é fruto do esforço coletivo, e cada contribuição foi essencial para chegarmos até aqui. Obrigado por tornarem essa jornada ainda mais enriquecedora! 
+
+---
+
 
 ## Sobre Mim
 ```markdown
